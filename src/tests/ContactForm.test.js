@@ -24,4 +24,4 @@ test('chama onSubmit com dados carros', () =>{
         email: 'ana@gmail.com',
         telefone: '11999999999'
     }); // e uma expequitativa para que tenha esse elementos.
-});//testa para ver se esse dados foram submetidos ao banco de dados.
+});//testa para ver se esse dados foram submetidos ao banco de dados.  
