@@ -1,18 +1,32 @@
-import { supabase } from "./supabase";
+import { supabase } from './supabase';
 
 export const getContacts = async () => {
-    const{data, error} = await supabase.from('contatos').select('*');
+    const { data, error } = await supabase.from('contatos').select('*');
     if (error) throw error;
     return data;
 };
 
 export const addContact = async (contact) => {
-    const {data, error} = await supabase.from('contatos').insert([contact]);
-    if (error) throw error;
+    const { data, error } = await supabase.from('contatos').insert([contact]);
+    if (error) throw error
     return data[0];
-}
+};
 
 export const deleteContact = async (id) => {
     const { error } = await supabase.from('contatos').delete().eq('id', id);
     if (error) throw error;
 };
+
+export const updateContact = async (id, contact) => {
+    const contactToUpadate = {
+        ...contact,
+        telefone: contact.telefone.replace(/\D/g, '')
+    };
+
+
+    const { error } = await supabase.from('contatos').update(contactToUpadate).eq('id', id);
+    if (error) throw error;
+};
+
+
+
